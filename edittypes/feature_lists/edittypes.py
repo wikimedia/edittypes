@@ -5,8 +5,8 @@ from revscoring.datasources.meta import vectorizers
 from revscoring.features.meta import aggregators
 from revscoring.languages import english
 
-from datasources.diff import (relocation_segments_context, added_segments_context, removed_segments_context)
-from wiki_edit_util import (spell_error, stem_overlap, user_history,
+from .datasources.diff import (relocation_segments_context, added_segments_context, removed_segments_context)
+from .wiki_edit_util import (spell_error, stem_overlap, user_history,
                             comment_revert, comment_typo, is_registered,
                             gender_type, segment_length, segment_search_external,
                             segment_search_file, segment_template,

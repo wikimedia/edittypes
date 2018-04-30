@@ -1,8 +1,7 @@
-from nose.tools import eq_
 from revscoring.dependencies import solve
 
 from revscoring.datasources import revision_oriented as ro
-from diff import operations_context
+from ..diff import operations_context
 
 
 A = """I am some interesting text. I mostly represent a
@@ -12,12 +11,11 @@ that interesting? I think it's interesting. Here's a citation for why it is
 interesting: <ref name="me"> M. E., I think this is all quite interesting.
 Journal of Self Reference. 42:1.</ref>""".replace("\n", " ")
 
-B = """
-I am some interesting text. I mostly represent a paragraph. There's something
-that is going to change right about there. But then the paragraph picks up
-again and there's some more stuff to think about.  Isn't that interesting?
-I think it's interesting. Here's a citation for why it is interesting:
-<ref name="me"> M. E., I think this is all quite interesting.
+B = """I am some interesting text. I mostly represent a
+paragraph. There's something that is going to change right about there. But
+then the paragraph picks up again and there's some more stuff to think about.
+Isn't that interesting? I think it's interesting. Here's a citation for why it
+is interesting: <ref name="me"> M. E., I think this is all quite interesting.
 Journal of Self Reference. 42:1.</ref>""".replace("\n", " ")
 
 
@@ -29,12 +27,12 @@ def test_operations_context():
 
     contexts = solve(operations_context, cache=cache)
 
-    eq_(contexts[0], None)
-    eq_(len(contexts[1]), 93)
+    assert not contexts[0]
+    assert len(contexts[1]), 93
     assert "there" in contexts[1]
-    eq_(len(contexts[2]), 93)
+    assert len(contexts[2]), 93
     assert "here" in contexts[2]
-    eq_(contexts[3], None)
+    assert not contexts[3]
 
 
 '''
@@ -67,4 +65,3 @@ def test_removed_segments_context():
     )
 '''
 test_operations_context()
-# test_removed_segments_context()
